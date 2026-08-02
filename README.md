@@ -7,4 +7,5 @@ The current pre-review standalone package uses a stable local development extens
 - Site: <https://pjczz.github.io/ps-canvas-support/>
 - Privacy: <https://pjczz.github.io/ps-canvas-support/privacy/>
 - Install: <https://pjczz.github.io/ps-canvas-support/install/>
+- macOS guide: <https://pjczz.github.io/ps-canvas-support/macos/>
 - Support: <https://pjczz.github.io/ps-canvas-support/support/>

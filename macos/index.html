@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="葉_PS-CANVAS macOS 安装、Chrome 扩展、权限、使用与故障排查指南。">
+  <title>macOS 安装指南 · PS Web Bridge</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header><nav class="shell"><a class="brand" href="../">PS Web Bridge</a><div class="nav-links"><a href="../install/">安装</a><a href="./">macOS 指南</a><a href="../privacy/">隐私</a><a href="../support/">支持</a></div></nav></header>
+  <main class="shell article">
+    <div class="eyebrow">macOS internal test · 0.1.13.1-r5</div>
+    <h1>macOS 安装与使用指南</h1>
+    <p class="article-intro">把中国版 RunningHub 无限画布中的图片送进 Photoshop，也可以把 Photoshop 全图或选中图层传回画布。本页覆盖安装、扩展、系统权限、首次验证和故障排查。</p>
+    <div class="status">Universal · Intel 与 Apple Silicon</div>
+
+    <div class="meta-grid">
+      <div class="meta-item"><strong>系统</strong><span>macOS 14 或更新版本</span></div>
+      <div class="meta-item"><strong>Photoshop</strong><span>2021 或更新版本；2025 为目标版本</span></div>
+      <div class="meta-item"><strong>浏览器</strong><span>Google Chrome</span></div>
+      <div class="meta-item"><strong>签名状态</strong><span>内部测试，临时签名，未 Apple 公证</span></div>
+    </div>
+
+    <div class="notice"><strong>先看这里：</strong>当前 r5 是内部测试包，首次打开可能出现 Gatekeeper 提示。它没有 Developer ID 签名，也没有经过 Apple 公证。不要把它误认为正式公证版本。</div>
+
+    <nav class="toc" aria-label="本页目录"><strong>本页目录</strong><ol><li><a href="#download">下载安装包</a></li><li><a href="#extension">加载 Chrome 扩展</a></li><li><a href="#permissions">设置系统权限</a></li><li><a href="#complete">判断安装完成</a></li><li><a href="#use">在 RunningHub 使用</a></li><li><a href="#diagnostics">诊断与日志</a></li><li><a href="#uninstall">卸载</a></li></ol></nav>
+
+    <section id="download">
+      <h2>1. 下载并安装 r5</h2>
+      <p>发布后从固定的 r5 预发布页下载，不使用可能跳过预发布版本的“latest”链接。</p>
+      <div class="release-actions"><a class="button" href="https://github.com/pjczz/ps-canvas-support/releases/tag/macos-v0.1.13.1-r5">打开 r5 预发布页</a><a class="button secondary" href="https://github.com/pjczz/ps-canvas-support/issues">遇到问题</a></div>
+      <p><strong>文件：</strong><code>葉_PS-CANVAS v0.1.13.1-Mac-r5-学员安装盘.dmg</code></p>
+      <p><strong>SHA256：</strong><code class="path hash">4d778f4879471eeb955eec8efa990dab7d4aa9fa609272d060f86ac2b126f935</code></p>
+      <p>可在“终端”中输入 <code>shasum -a 256</code>，然后把 DMG 拖进终端窗口，回车后与上面的值比较。</p>
+      <ol class="steps"><li>双击 DMG，确认看到安装 PKG、安装说明和卸载入口。</li><li>双击 <code>1-安装 葉_PS-CANVAS.pkg</code>，按安装器提示完成安装。</li><li>安装结束后不要只停在安装器页面，继续加载 Chrome 扩展和设置权限。</li></ol>
+      <figure class="figure narrow"><img src="../assets/macos/01-dmg-contents.jpg" alt="DMG 中包含安装 PKG、安装说明和卸载入口" loading="lazy"><figcaption>DMG 中的三个入口：安装、说明、卸载。</figcaption></figure>
+    </section>
+
+    <section id="extension">
+      <h2>2. 加载 Chrome 扩展</h2>
+      <p>扩展已经随本机桥接安装，不需要在 Finder 中手动寻找源码。固定目录是：</p>
+      <code class="path">/Library/Application Support/葉_PS-CANVAS/current/extension</code>
+      <ol class="steps"><li>打开安装后的“葉_PS-CANVAS 助手”，点击“复制插件路径”。</li><li>在 Chrome 地址栏打开 <code>chrome://extensions/</code>。</li><li>打开右上角“开发者模式”，点击“加载未打包的扩展程序”。</li><li>在文件选择窗口按 <code>Shift + Command + G</code> 打开“前往文件夹”；如果键盘不方便，也可以通过 Finder 菜单“前往 → 前往文件夹”进入。</li><li>粘贴上面的固定路径，选中 <code>extension</code> 文件夹。</li><li>回到 RunningHub 画布并刷新页面。</li></ol>
+      <figure class="figure"><img src="../assets/macos/02-chrome-load-unpacked.jpg" alt="Chrome 扩展程序页面中的开发者模式和加载未打包扩展按钮" loading="lazy"><figcaption>开启开发者模式后，选择“加载未打包的扩展程序”。</figcaption></figure>
+    </section>
+
+    <section id="permissions">
+      <h2>3. 开启辅助功能和自动化</h2>
+      <ol class="steps"><li>打开“系统设置 → 隐私与安全性 → 辅助功能”，确保“葉_PS-CANVAS 助手”开关处于开启状态。</li><li>打开“系统设置 → 隐私与安全性 → 自动化”，展开“葉_PS-CANVAS 助手”，确保 Adobe Photoshop 开关处于开启状态。</li><li>如果系统首次传输时弹出授权窗口，选择允许，然后回到 RunningHub 重试。</li></ol>
+      <figure class="figure narrow"><img src="../assets/macos/04-automation-permission.jpg" alt="macOS 自动化权限中葉_PS-CANVAS 助手控制 Adobe Photoshop 的开关" loading="lazy"><figcaption>自动化权限的负责程序必须是“葉_PS-CANVAS 助手”，其下 Photoshop 开关应开启。</figcaption></figure>
+      <div class="callout"><strong>开关看起来已开启，但诊断仍显示 denied？</strong><br>临时签名版本升级后，macOS 可能保留旧授权界面。先把对应开关关闭，再重新开启；随后退出并重新打开 Chrome、Photoshop 和助手。r2 还存在 Node 父进程身份问题，反复切换权限不能根治，请直接升级到 r5。</div>
+    </section>
+
+    <section id="complete">
+      <h2>4. 前三项通过，本地安装就完成</h2>
+      <p>助手诊断中的前三项全部通过，即代表本地安装完整成功：</p>
+      <ul class="checklist"><li>本地安装文件、Chrome、扩展、Native Messaging 和协议自检正常</li><li>找到受支持的 Photoshop</li><li>辅助功能与 Photoshop 自动化权限正常</li></ul>
+      <p>后面的两项不是安装条件，而是进入 RunningHub 后的首次功能验证：RunningHub → Photoshop 和 Photoshop → RunningHub。</p>
+    </section>
+
+    <section id="use">
+      <h2>5. 打开正确的 RunningHub 画布</h2>
+      <p>r5 同时支持以下两种中国版具体画布地址：</p>
+      <code class="path">https://rhtv.runninghub.cn/projects/canvas/&lt;项目ID&gt;<br>https://rhtv.runninghub.cn/project/canvas/&lt;项目ID&gt;</code>
+      <p>带语言前缀的地址也支持。项目首页、<code>/projects/</code> 列表页和海外版 <code>rhtv.runninghub.ai</code> 不会显示插件面板。</p>
+      <figure class="figure"><img src="../assets/macos/05-runninghub-panel.jpg" alt="RunningHub 无限画布右下角的葉_PS-CANVAS 插件面板和运行成功状态" loading="lazy"><figcaption>在具体画布选择图片节点后，插件面板会启用传输按钮并显示运行结果。</figcaption></figure>
+
+      <h2>RunningHub → Photoshop</h2>
+      <table class="mini-table"><thead><tr><th>操作</th><th>结果</th></tr></thead><tbody><tr><td>新建 PSD</td><td>按输入图片尺寸新建文档，并创建 <code>RHTV Smart Object</code> 与 <code>Paint Over</code> 图层。</td></tr><tr><td>置顶放入</td><td>把图片作为智能对象放到当前文档顶部。</td></tr><tr><td>放到选中层上方</td><td>把图片放在 Photoshop 当前选中图层的上方。</td></tr></tbody></table>
+      <h2>Photoshop → RunningHub</h2>
+      <p>“全图 → 画布”回传当前文档的合成结果；“选中图层 → 画布”只回传当前选中图层。传输前请确认原 RunningHub 画布标签仍然存在。</p>
+      <figure class="figure"><img src="../assets/macos/06-photoshop-layers.jpg" alt="Photoshop 中尺寸为 592×236 的测试文档及 RHTV Smart Object 和 Paint Over 图层" loading="lazy"><figcaption>验证示例：文档为 592 × 236，并包含目标智能对象和绘制图层。截图使用测试画面，不含私人作品。</figcaption></figure>
+    </section>
+
+    <section id="diagnostics">
+      <h2>6. 诊断、日志与常见错误</h2>
+      <p>请优先从助手导出诊断报告。报告会记录实际执行模式；r5 应显示 <code>launchservices-app</code>，预期负责进程是 <code>cn.ayeaye.pscanvas.helper</code>。</p>
+      <table class="mini-table"><thead><tr><th>位置</th><th>用途</th></tr></thead><tbody><tr><td><code>~/Library/Logs/葉_PS-CANVAS/bridge.jsonl</code></td><td>网页请求、图片处理、助手调用和结果</td></tr><tr><td><code>~/Library/Logs/葉_PS-CANVAS/helper.jsonl</code></td><td>Photoshop 版本、权限状态、AppleScript 错误和结果</td></tr><tr><td>助手中的“导出诊断”</td><td>汇总版本、架构、权限、执行模式和最近一次脱敏错误</td></tr></tbody></table>
+      <div class="callout"><strong>版本提醒：</strong>r2 由内置 Node 直接启动助手，macOS 会把 Node 识别为 AppleEvent 负责进程，即使自动化开关已经开启也可能返回 <code>MACOS_AUTOMATION_DENIED</code>。r3 起改用独立助手 App 的 LaunchServices 通道；r4 在旧版本覆盖安装时可能被 PackageKit 重定位助手。请使用 r5，它同时包含自动化身份、升级安装和两种画布地址修复。</div>
+      <p>日志会按请求编号串联，但提交公开问题前仍请检查并遮盖个人路径。日志不会记录完整图片 URL、Cookie、令牌或图片内容。</p>
+    </section>
+
+    <section id="uninstall">
+      <h2>7. 卸载</h2>
+      <ol class="steps"><li>重新打开 DMG，双击 <code>3-卸载 葉_PS-CANVAS.command</code>。</li><li>在 <code>chrome://extensions/</code> 中移除 PS Web Bridge。</li><li>如不再使用，可在系统设置中移除助手的辅助功能与自动化权限。</li></ol>
+    </section>
+
+    <section class="english">
+      <div class="eyebrow">English summary</div>
+      <h2>macOS quick start</h2>
+      <p>The internal r5 DMG supports both Intel and Apple Silicon Macs running macOS 14 or later. It is ad-hoc signed and not Apple-notarized. Install the PKG, load the unpacked Chrome extension from <code>/Library/Application Support/葉_PS-CANVAS/current/extension</code>, then allow Accessibility and Photoshop Automation for the helper app.</p>
+      <p>The extension supports concrete China-site canvas URLs under both <code>/projects/canvas/&lt;id&gt;</code> and <code>/project/canvas/&lt;id&gt;</code>. The overseas <code>.ai</code> site and project-list pages are intentionally unsupported. The first three checks in the helper mean local installation is complete; the two transfer checks are completed afterward on RunningHub.</p>
+    </section>
+  </main>
+  <footer><div class="shell">PS Web Bridge · macOS 0.1.13.1-r5 internal test</div></footer>
+</body>
+</html>
