@@ -24,39 +24,49 @@
 
     <div class="notice"><strong>先看这里：</strong>当前 r5 是内部测试包，首次打开可能出现 Gatekeeper 提示。它没有 Developer ID 签名，也没有经过 Apple 公证。不要把它误认为正式公证版本。</div>
 
-    <nav class="toc" aria-label="本页目录"><strong>本页目录</strong><ol><li><a href="#download">下载安装包</a></li><li><a href="#extension">加载 Chrome 扩展</a></li><li><a href="#permissions">设置系统权限</a></li><li><a href="#complete">判断安装完成</a></li><li><a href="#use">在 RunningHub 使用</a></li><li><a href="#diagnostics">诊断与日志</a></li><li><a href="#uninstall">卸载</a></li></ol></nav>
+    <nav class="toc" aria-label="本页目录"><strong>本页目录</strong><ol><li><a href="#download">下载安装包</a></li><li><a href="#permissions">获取系统权限</a></li><li><a href="#extension">加载 Chrome 扩展</a></li><li><a href="#complete">判断安装完成</a></li><li><a href="#use">在 RunningHub 使用</a></li><li><a href="#diagnostics">诊断与日志</a></li><li><a href="#uninstall">卸载</a></li></ol></nav>
 
     <section id="download">
       <h2>1. 下载并安装 r5</h2>
-      <p>发布后从固定的 r5 预发布页下载，不使用可能跳过预发布版本的“latest”链接。</p>
-      <div class="release-actions"><a class="button" href="https://github.com/pjczz/ps-canvas-support/releases/tag/macos-v0.1.13.1-r5">打开 r5 预发布页</a><a class="button secondary" href="https://github.com/pjczz/ps-canvas-support/issues">遇到问题</a></div>
+      <p>r5 是内部测试包，请使用课程或测试通知中提供的文件。GitHub 预发布建立后也会出现在发布页中。</p>
+      <div class="release-actions"><a class="button" href="https://github.com/pjczz/ps-canvas-support/releases">查看发布页</a><a class="button secondary" href="https://github.com/pjczz/ps-canvas-support/issues">遇到问题</a></div>
       <p><strong>文件：</strong><code>葉_PS-CANVAS v0.1.13.1-Mac-r5-学员安装盘.dmg</code></p>
       <p><strong>SHA256：</strong><code class="path hash">4d778f4879471eeb955eec8efa990dab7d4aa9fa609272d060f86ac2b126f935</code></p>
       <p>可在“终端”中输入 <code>shasum -a 256</code>，然后把 DMG 拖进终端窗口，回车后与上面的值比较。</p>
-      <ol class="steps"><li>双击 DMG，确认看到安装 PKG、安装说明和卸载入口。</li><li>双击 <code>1-安装 葉_PS-CANVAS.pkg</code>，按安装器提示完成安装。</li><li>安装结束后不要只停在安装器页面，继续加载 Chrome 扩展和设置权限。</li></ol>
+      <ol class="steps"><li>双击 DMG，确认看到安装 PKG、安装说明和卸载入口。</li><li>双击 <code>1-安装 葉_PS-CANVAS.pkg</code>。</li><li>如果出现“Apple 无法验证”提示，点击窗口右上角的问号。不要点击“移到废纸篓”。</li><li>在打开的 Mac 使用手册中点击“为我打开‘隐私与安全性’设置”。也可以自己打开“苹果菜单 → 系统设置 → 隐私与安全性”。</li><li>向下滚动到“安全性”，找到“已阻止‘1-安装 葉_PS-CANVAS.pkg’以保护 Mac”，点击“仍要打开”。</li><li>后续弹窗继续选择“仍要打开”“打开”或“允许”，按系统要求输入当前 Mac 的登录密码，然后按安装器提示完成安装。</li></ol>
       <figure class="figure narrow"><img src="../assets/macos/01-dmg-contents.jpg" alt="DMG 中包含安装 PKG、安装说明和卸载入口" loading="lazy"><figcaption>DMG 中的三个入口：安装、说明、卸载。</figcaption></figure>
-    </section>
-
-    <section id="extension">
-      <h2>2. 加载 Chrome 扩展</h2>
-      <p>扩展已经随本机桥接安装，不需要在 Finder 中手动寻找源码。固定目录是：</p>
-      <code class="path">/Library/Application Support/葉_PS-CANVAS/current/extension</code>
-      <ol class="steps"><li>打开安装后的“葉_PS-CANVAS 助手”，点击“复制插件路径”。</li><li>在 Chrome 地址栏打开 <code>chrome://extensions/</code>。</li><li>打开右上角“开发者模式”，点击“加载未打包的扩展程序”。</li><li>在文件选择窗口按 <code>Shift + Command + G</code> 打开“前往文件夹”；如果键盘不方便，也可以通过 Finder 菜单“前往 → 前往文件夹”进入。</li><li>粘贴上面的固定路径，选中 <code>extension</code> 文件夹。</li><li>回到 RunningHub 画布并刷新页面。</li></ol>
-      <figure class="figure"><img src="../assets/macos/02-chrome-load-unpacked.jpg" alt="Chrome 扩展程序页面中的开发者模式和加载未打包扩展按钮" loading="lazy"><figcaption>开启开发者模式后，选择“加载未打包的扩展程序”。</figcaption></figure>
+      <div class="callout"><strong>为什么会被拦截？</strong><br>r5 是临时签名、未经过 Apple 公证的内部测试包。Gatekeeper 提示是这一发布状态的预期表现，不代表安装包支持绕过系统安全检查。只有确认文件名和上方 SHA256 都正确时，才使用“仍要打开”。</div>
+      <div class="screenshot-sequence">
+        <figure class="figure dialog"><img src="../assets/macos/07-gatekeeper-warning.png" alt="Apple 无法验证葉_PS-CANVAS 安装包的 Gatekeeper 提示，右上角带有问号按钮" loading="lazy"><figcaption>第一步：看到拦截提示后点击右上角问号，不要点击“移到废纸篓”。</figcaption></figure>
+        <figure class="figure"><img src="../assets/macos/08-gatekeeper-help-link.png" alt="Mac 使用手册中为我打开隐私与安全性设置的链接" loading="lazy"><figcaption>第二步：点击“为我打开‘隐私与安全性’设置”，或手动进入同一路径。</figcaption></figure>
+        <figure class="figure"><img src="../assets/macos/09-gatekeeper-open-anyway.png" alt="macOS 隐私与安全性的安全性区域中被阻止安装包和仍要打开按钮" loading="lazy"><figcaption>第三步：在“安全性”中找到被拦截的安装包，点击“仍要打开”。</figcaption></figure>
+      </div>
+      <div class="notice"><strong>密码安全：</strong>这里只会要求输入你当前 Mac 的登录密码。不要把密码发给客服、老师或任何其他人，也不要在网页中填写。</div>
     </section>
 
     <section id="permissions">
-      <h2>3. 开启辅助功能和自动化</h2>
-      <ol class="steps"><li>打开“系统设置 → 隐私与安全性 → 辅助功能”，确保“葉_PS-CANVAS 助手”开关处于开启状态。</li><li>打开“系统设置 → 隐私与安全性 → 自动化”，展开“葉_PS-CANVAS 助手”，确保 Adobe Photoshop 开关处于开启状态。</li><li>如果系统首次传输时弹出授权窗口，选择允许，然后回到 RunningHub 重试。</li></ol>
-      <figure class="figure narrow"><img src="../assets/macos/04-automation-permission.jpg" alt="macOS 自动化权限中葉_PS-CANVAS 助手控制 Adobe Photoshop 的开关" loading="lazy"><figcaption>自动化权限的负责程序必须是“葉_PS-CANVAS 助手”，其下 Photoshop 开关应开启。</figcaption></figure>
+      <h2>2. 获取辅助功能与 Photoshop 自动化权限</h2>
+      <p>安装完成后打开“葉_PS-CANVAS 助手”，点击“检查并申请权限”。macOS 会分别保护 Photoshop 自动化和向 Chrome 粘贴图片的操作。</p>
+      <ol class="steps"><li>系统询问权限时选择“允许”或“打开系统设置”。</li><li>打开“系统设置 → 隐私与安全性 → 辅助功能”，开启“葉_PS-CANVAS 助手”。这项权限用于把 Photoshop 图片粘贴回 Chrome。</li><li>打开“系统设置 → 隐私与安全性 → 自动化”，展开“葉_PS-CANVAS 助手”，开启 Adobe Photoshop。这项权限用于从 RunningHub 控制 Photoshop。</li><li>返回助手，再点击一次“检查并申请权限”，确认前三项全部打勾。</li></ol>
+      <figure class="figure narrow"><img src="../assets/macos/04-automation-permission.jpg" alt="macOS 自动化权限中葉_PS-CANVAS 助手控制 Adobe Photoshop 的开关" loading="lazy"><figcaption>自动化权限的负责程序必须是“葉_PS-CANVAS 助手”，其下 Adobe Photoshop 开关应开启。</figcaption></figure>
+      <figure class="figure"><img src="../assets/macos/10-assistant-permission-check.png" alt="葉_PS-CANVAS 助手安装检查中前三项已经打勾" loading="lazy"><figcaption>前三项打勾代表本地安装、Photoshop 和两项系统权限已经完成；下面两项要到 RunningHub 中实际传输后才会打勾。</figcaption></figure>
+      <p class="version-note">macOS 14、15、26 的提示文字和按钮位置可能略有差异，但菜单路径均为“系统设置 → 隐私与安全性”。</p>
       <div class="callout"><strong>开关看起来已开启，但诊断仍显示 denied？</strong><br>临时签名版本升级后，macOS 可能保留旧授权界面。先把对应开关关闭，再重新开启；随后退出并重新打开 Chrome、Photoshop 和助手。r2 还存在 Node 父进程身份问题，反复切换权限不能根治，请直接升级到 r5。</div>
+    </section>
+
+    <section id="extension">
+      <h2>3. 复制路径并加载 Chrome 扩展</h2>
+      <p>扩展已经随本机桥接安装，不需要在 Finder 中手动寻找源码。固定目录是：</p>
+      <code class="path">/Library/Application Support/葉_PS-CANVAS/current/extension</code>
+      <ol class="steps"><li>打开“葉_PS-CANVAS 助手”，点击“复制插件路径”。</li><li>在 Chrome 地址栏打开 <code>chrome://extensions/</code>。</li><li>打开右上角“开发者模式”，点击“加载未打包的扩展程序”。</li><li>在文件选择窗口按 <code>Shift + Command + G</code> 打开“前往文件夹”；如果键盘不方便，也可以通过 Finder 菜单“前往 → 前往文件夹”进入。</li><li>粘贴上面的固定路径，选中 <code>extension</code> 文件夹。</li><li>回到 RunningHub 画布并刷新页面。</li></ol>
+      <figure class="figure"><img src="../assets/macos/02-chrome-load-unpacked.jpg" alt="Chrome 扩展程序页面中的开发者模式和加载未打包扩展按钮" loading="lazy"><figcaption>开启开发者模式后，选择“加载未打包的扩展程序”。</figcaption></figure>
     </section>
 
     <section id="complete">
       <h2>4. 前三项通过，本地安装就完成</h2>
       <p>助手诊断中的前三项全部通过，即代表本地安装完整成功：</p>
       <ul class="checklist"><li>本地安装文件、Chrome、扩展、Native Messaging 和协议自检正常</li><li>找到受支持的 Photoshop</li><li>辅助功能与 Photoshop 自动化权限正常</li></ul>
-      <p>后面的两项不是安装条件，而是进入 RunningHub 后的首次功能验证：RunningHub → Photoshop 和 Photoshop → RunningHub。</p>
+      <p>后面的两项不是安装条件，而是进入 RunningHub 后的首次功能验证：RunningHub → Photoshop 和 Photoshop → RunningHub。两项都成功，才代表双向同步传输完整可用。</p>
     </section>
 
     <section id="use">
@@ -71,6 +81,7 @@
       <h2>Photoshop → RunningHub</h2>
       <p>“全图 → 画布”回传当前文档的合成结果；“选中图层 → 画布”只回传当前选中图层。传输前请确认原 RunningHub 画布标签仍然存在。</p>
       <figure class="figure"><img src="../assets/macos/06-photoshop-layers.jpg" alt="Photoshop 中尺寸为 592×236 的测试文档及 RHTV Smart Object 和 Paint Over 图层" loading="lazy"><figcaption>验证示例：文档为 592 × 236，并包含目标智能对象和绘制图层。截图使用测试画面，不含私人作品。</figcaption></figure>
+      <div class="success-panel"><strong>最终目标：双向同步传输</strong><span>RunningHub 图片可以进入 Photoshop，Photoshop 的全图或选中图层也可以返回原 RunningHub 画布。</span></div>
     </section>
 
     <section id="diagnostics">
@@ -89,7 +100,7 @@
     <section class="english">
       <div class="eyebrow">English summary</div>
       <h2>macOS quick start</h2>
-      <p>The internal r5 DMG supports both Intel and Apple Silicon Macs running macOS 14 or later. It is ad-hoc signed and not Apple-notarized. Install the PKG, load the unpacked Chrome extension from <code>/Library/Application Support/葉_PS-CANVAS/current/extension</code>, then allow Accessibility and Photoshop Automation for the helper app.</p>
+      <p>The internal r5 DMG supports both Intel and Apple Silicon Macs running macOS 14 or later. It is ad-hoc signed and not Apple-notarized, so Gatekeeper may require “Open Anyway” under Privacy &amp; Security. Install the PKG, allow Photoshop Automation and Accessibility for the helper, then load the unpacked Chrome extension from <code>/Library/Application Support/葉_PS-CANVAS/current/extension</code>.</p>
       <p>The extension supports concrete China-site canvas URLs under both <code>/projects/canvas/&lt;id&gt;</code> and <code>/project/canvas/&lt;id&gt;</code>. The overseas <code>.ai</code> site and project-list pages are intentionally unsupported. The first three checks in the helper mean local installation is complete; the two transfer checks are completed afterward on RunningHub.</p>
     </section>
   </main>

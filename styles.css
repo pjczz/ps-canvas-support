@@ -55,8 +55,15 @@ code { color: #fff; overflow-wrap: anywhere; }
 .figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
 .figure figcaption { margin-top: 10px; color: var(--muted); font-size: .9rem; }
 .figure.narrow { max-width: 720px; }
+.figure.dialog { max-width: 520px; }
+.screenshot-sequence { display: grid; gap: 24px; margin: 26px 0 38px; }
+.screenshot-sequence .figure { margin: 0; }
 .callout { margin: 24px 0; padding: 18px 20px; border: 1px solid rgba(255, 181, 27, .38); border-radius: 14px; background: var(--accent-soft); }
 .callout strong { color: #fff; }
+.version-note { font-size: .9rem; }
+.success-panel { display: grid; gap: 6px; margin: 30px 0; padding: 20px 22px; border: 1px solid rgba(99, 211, 145, .4); border-radius: 16px; background: rgba(99, 211, 145, .08); }
+.success-panel strong { color: var(--success); font-size: 1.05rem; }
+.success-panel span { color: var(--muted); }
 .release-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0; }
 .button.secondary { border: 1px solid var(--line); background: var(--panel); color: var(--text); }
 .hash { font-size: .84rem; word-break: break-all; }
